@@ -30,49 +30,11 @@ export default {
   components: {},
   data() {
     return {
-      userList: [
-        {
-          name: "用户1",
-          userId: "uesr1",
-          photo: "http://oss.mcweb.club/img/chat/1.jpg",
-        },
-        {
-          name: "用户2",
-          userId: "uesr2",
-          photo: "http://oss.mcweb.club/img/chat/2.jpg",
-        },
-        {
-          name: "用户3",
-          userId: "uesr3",
-          photo: "http://oss.mcweb.club/img/chat/3.jpg",
-        },
-        {
-          name: "用户4",
-          userId: "uesr4",
-          photo: "http://oss.mcweb.club/img/chat/4.jpg",
-        },
-        {
-          name: "用户5",
-          userId: "uesr5",
-          photo: "http://oss.mcweb.club/img/chat/5.jpg",
-        },
-        {
-          name: "用户6",
-          userId: "uesr6",
-          photo: "http://oss.mcweb.club/img/chat/6.jpg",
-        },
-        {
-          name: "用户7",
-          userId: "uesr7",
-          photo: "http://oss.mcweb.club/img/chat/7.jpg",
-        },
-        {
-          name: "用户8",
-          userId: "uesr8",
-          photo: "http://oss.mcweb.club/img/chat/8.jpg",
-        },
-      ],
+      userList: [],
     };
+  },
+  created() {
+    this.userList = this.$user.getUserList();
   },
   methods: {
     toLogin(e) {

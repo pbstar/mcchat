@@ -3,5 +3,8 @@ module.exports = defineConfig({
   publicPath: './',
   transpileDependencies: true,
   productionSourceMap: false,
-  lintOnSave: false
+  lintOnSave: false,
+  devServer: {
+    https: true
+  }
 })

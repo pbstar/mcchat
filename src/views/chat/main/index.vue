@@ -10,7 +10,7 @@
 import headerBox from "@/components/header";
 import footerBox from "@/components/footer";
 export default {
-  name: "home",
+  name: "main",
   components: {
     headerBox,
     footerBox,

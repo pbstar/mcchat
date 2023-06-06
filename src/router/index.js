@@ -7,19 +7,26 @@ const routes = [
   {
     path: '/',
     name: 'index',
-    redirect: '/message'
+    redirect: '/chat/message'
   },
-  {
-    path: "/message",
-    name: "message",
-    meta: { title: "消息" },
-    component: resolve => (require(["@/views/message"], resolve)),
-  },
+
   {
     path: "/chat",
     name: "chat",
-    meta: { title: "聊天" },
     component: resolve => (require(["@/views/chat"], resolve)),
+    children: [
+      {
+        path: "message",
+        name: "message",
+        meta: { title: "消息" },
+        component: resolve => (require(["@/views/chat/message"], resolve)),
+      }, {
+        path: "main",
+        name: "main",
+        meta: { title: "我的" },
+        component: resolve => (require(["@/views/chat/main"], resolve)),
+      },
+    ]
   },
   {
     path: "/login",

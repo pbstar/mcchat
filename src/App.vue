@@ -9,6 +9,7 @@ export default {
   watch: {
     $route: {
       handler(to, from) {
+        console.log(to);
         if (to.matched.length > 0 && to.matched[0].name != "login") {
           if (!this.$unit.getLocalStorage("userId")) {
             this.$notify({
