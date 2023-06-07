@@ -41,7 +41,9 @@ export default {
     } else if (this.talkType == 2) {
       this.userList = this.$user.getUserList();
       for (let i = 0; i < this.userList.length; i++) {
-        this.userIds.push(this.userList[i].userId);
+        if (this.userList[i].userId != this.userID) {
+          this.userIds.push(this.userList[i].userId);
+        }
       }
       this.talkName = "ikun一家人";
     }

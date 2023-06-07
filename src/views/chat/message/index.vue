@@ -125,6 +125,8 @@ export default {
       overflow: hidden;
       padding-left: 1px;
       padding-top: 1px;
+      border-radius: 5px;
+      overflow: hidden;
       .img {
         width: 11px;
         height: 11px;
