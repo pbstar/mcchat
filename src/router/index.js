@@ -21,11 +21,16 @@ const routes = [
         meta: { title: "消息" },
         component: resolve => (require(["@/views/chat/message"], resolve)),
       }, {
-        path: "main",
-        name: "main",
+        path: "mine",
+        name: "mine",
         meta: { title: "我的" },
-        component: resolve => (require(["@/views/chat/main"], resolve)),
-      },
+        component: resolve => (require(["@/views/chat/mine"], resolve)),
+      }, {
+        path: "talk",
+        name: "talk",
+        meta: { title: "聊天" },
+        component: resolve => (require(["@/views/chat/talk"], resolve)),
+      }
     ]
   },
   {

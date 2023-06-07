@@ -1,7 +1,9 @@
 <template>
   <div>
-    <router-view @call="call"></router-view>
-    <TUICallKit class="kitBox" />
+    <div class="page" v-loading="isLoading">
+      <router-view></router-view>
+      <TUICallKit class="kitBox" />
+    </div>
   </div>
 </template>
 
@@ -24,6 +26,7 @@ export default {
       SDKAppID: 1400815285,
       userID: "",
       userSig: "",
+      isLoading: true,
     };
   },
   created() {
@@ -42,9 +45,15 @@ export default {
   mounted() {
     this.init();
   },
-  beforeDestroy() {},
+  beforeDestroy() {
+    this.$bus.$off("callUserVideo");
+    this.$bus.$off("callUsersVideo");
+  },
   methods: {
     async init() {
+      if (!this.userID) {
+        return;
+      }
       try {
         await TUICallKitServer.init({
           SDKAppID: this.SDKAppID,
@@ -52,26 +61,32 @@ export default {
           userSig: this.userSig,
           // tim: this.tim // 如果工程中已有 tim 实例，需在此处传入
         });
+        this.isLoading = false;
+        this.$bus.$on("callUserVideo", (e) => {
+          try {
+            // 1v1 通话
+            TUICallKitServer.call({
+              userID: e.userId,
+              type: TUICallType.VIDEO_CALL,
+            });
+          } catch (error) {
+            alert(`拨打失败，原因：${error},接受Id：${userID}`);
+          }
+        });
+        this.$bus.$on("callUsersVideo", (e) => {
+          try {
+            // 群组通话
+            TUICallKitServer.groupCall({
+              userIDList: e.userIds,
+              groupID: "g1",
+              type: TUICallType.VIDEO_CALL,
+            });
+          } catch (error) {
+            alert(`拨打失败，原因：${error},接受Id：${userID}`);
+          }
+        });
       } catch (error) {
         alert(`初始化失败，原因：${error}`);
-      }
-    },
-    async call(userID) {
-      if (this.userID == userID) {
-        alert("不能打电话给自己");
-        return;
-      }
-      userID = userID.toString();
-      try {
-        // 1v1 通话
-        await TUICallKitServer.call({
-          userID,
-          type: TUICallType.VIDEO_CALL,
-        });
-        // 群组通话
-        // TUICallKitServer.groupCall({ userIDList: ["xxx"], groupID: "xxx", type: TUICallType.VIDEO_CALL });
-      } catch (error) {
-        alert(`拨打失败，原因：${error},接受Id：${userID}`);
       }
     },
   },
@@ -79,10 +94,13 @@ export default {
 </script>
 <style lang="scss" scoped>
 .kitBox {
-  position: fixed;
+  position: fixed !important;
   left: 0;
   top: 0;
   right: 0;
   bottom: 0;
+}
+.page {
+  min-height: 100vh;
 }
 </style>

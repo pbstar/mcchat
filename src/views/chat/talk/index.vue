@@ -1,75 +1,57 @@
 <template>
   <div>
     <div class="body">
-      <headerBox></headerBox>
-      <div class="midbox">
-        <div
-          class="mbox"
-          v-for="(item, index) in userList"
-          v-show="item.userId != userID"
-          :key="index"
-          @click="toTalk(item.userId)"
-        >
-          <div class="bleft">
-            <img :src="item.photo" alt="" />
-          </div>
-          <div class="bright">
-            <p>{{ item.name }}</p>
-            <p class="p2">进来聊聊天</p>
-          </div>
-        </div>
-        <div class="mbox mbox2" @click="toTalk2('1')">
-          <div class="bleft">
-            <div class="img" v-for="(item, index) in userList" :key="index">
-              <img :src="item.photo" alt="" />
-            </div>
-          </div>
-          <div class="bright">
-            <p>ikun一家人</p>
-            <p class="p2">进来聊聊天</p>
-          </div>
-        </div>
-      </div>
-      <footerBox page="1"></footerBox>
+      <headerBox2
+        :title="talkName"
+        :talkType="talkType"
+        :talkId="talkId"
+        :userIds="userIds"
+      ></headerBox2>
     </div>
   </div>
 </template>
 
 <script>
-import headerBox from "@/components/header";
-import footerBox from "@/components/footer";
+import headerBox2 from "@/components/header2";
+// import footerBox from "@/components/footer";
 export default {
-  name: "message",
+  name: "talk",
   components: {
-    headerBox,
-    footerBox,
+    headerBox2,
+    // footerBox,
   },
   data() {
     return {
       userID: "",
+      talkId: "",
+      talkType: "1",
+      talkName: "聊天",
       userList: [],
+      userIds: [],
     };
   },
   created() {
     this.userID = this.$unit.getLocalStorage("userId");
-    this.userList = this.$user.getUserList();
+
+    this.talkType = this.$route.query.talkType;
+    this.talkId = this.$route.query.talkId;
+    if (this.talkType == 1) {
+      this.talkInfo = this.$user.getUserInfo(this.talkId);
+      this.talkName = this.talkInfo.name;
+    } else if (this.talkType == 2) {
+      this.userList = this.$user.getUserList();
+      for (let i = 0; i < this.userList.length; i++) {
+        this.userIds.push(this.userList[i].userId);
+      }
+      this.talkName = "ikun一家人";
+    }
   },
   methods: {
     toTalk(id) {
       this.$router.push({
         name: "talk",
         query: {
-          talkId: id,
-          talkType: "1",
-        },
-      });
-    },
-    toTalk2(id) {
-      this.$router.push({
-        name: "talk",
-        query: {
-          talkId: id,
-          talkType: "2",
+          talkUserId: id,
         },
       });
     },
