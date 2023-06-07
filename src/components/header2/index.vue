@@ -49,12 +49,12 @@ export default {
       if (this.talkType == 1) {
         this.$bus.$emit("callUser", {
           userId: this.talkId,
-          type: 2,
+          type: 1,
         });
       } else if (this.talkType == 2) {
         this.$bus.$emit("callUsers", {
           userIds: this.userIds,
-          type: 2,
+          type: 1,
         });
       }
     },
@@ -62,12 +62,12 @@ export default {
       if (this.talkType == 1) {
         this.$bus.$emit("callUser", {
           userId: this.talkId,
-          type: 1,
+          type: 2,
         });
       } else if (this.talkType == 2) {
         this.$bus.$emit("callUsers", {
           userIds: this.userIds,
-          type: 1,
+          type: 2,
         });
       }
     },
