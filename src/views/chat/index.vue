@@ -74,15 +74,16 @@ export default {
           }
         });
         this.$bus.$on("callUsersVideo", (e) => {
+          console.log(e);
           try {
             // 群组通话
             TUICallKitServer.groupCall({
               userIDList: e.userIds,
-              groupID: "g1",
+              groupID: "12345678",
               type: TUICallType.VIDEO_CALL,
             });
           } catch (error) {
-            alert(`拨打失败，原因：${error},接受Id：${userID}`);
+            alert(`拨打失败，原因：${error}`);
           }
         });
       } catch (error) {
