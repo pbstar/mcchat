@@ -46,17 +46,28 @@ export default {
       });
     },
     toPhone() {
-      this.$message.warning("等等");
-      return;
+      if (this.talkType == 1) {
+        this.$bus.$emit("callUser", {
+          userId: this.talkId,
+          type: 2,
+        });
+      } else if (this.talkType == 2) {
+        this.$bus.$emit("callUsers", {
+          userIds: this.userIds,
+          type: 2,
+        });
+      }
     },
     toVideo() {
       if (this.talkType == 1) {
-        this.$bus.$emit("callUserVideo", {
+        this.$bus.$emit("callUser", {
           userId: this.talkId,
+          type: 1,
         });
       } else if (this.talkType == 2) {
-        this.$bus.$emit("callUsersVideo", {
+        this.$bus.$emit("callUsers", {
           userIds: this.userIds,
+          type: 1,
         });
       }
     },

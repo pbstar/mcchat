@@ -46,8 +46,8 @@ export default {
     this.init();
   },
   beforeDestroy() {
-    this.$bus.$off("callUserVideo");
-    this.$bus.$off("callUsersVideo");
+    this.$bus.$off("callUser");
+    this.$bus.$off("callUsers");
   },
   methods: {
     async init() {
@@ -62,25 +62,25 @@ export default {
           // tim: this.tim // 如果工程中已有 tim 实例，需在此处传入
         });
         this.isLoading = false;
-        this.$bus.$on("callUserVideo", (e) => {
+        this.$bus.$on("callUser", (e) => {
           try {
             // 1v1 通话
             TUICallKitServer.call({
               userID: e.userId,
-              type: TUICallType.VIDEO_CALL,
+              type: e.type,
             });
           } catch (error) {
             alert(`拨打失败，原因：${error},接受Id：${userID}`);
           }
         });
-        this.$bus.$on("callUsersVideo", (e) => {
+        this.$bus.$on("callUsers", (e) => {
           console.log(e);
           try {
             // 群组通话
             TUICallKitServer.groupCall({
               userIDList: e.userIds,
               groupID: "12345678",
-              type: TUICallType.VIDEO_CALL,
+              type: e.type,
             });
           } catch (error) {
             alert(`拨打失败，原因：${error}`);
