@@ -2,42 +2,42 @@ let userList = [
   {
     name: "用户1",
     userId: "uesr1",
-    photo: "http://oss.mcweb.club/img/chat/1.jpg",
+    photo: "./static/images/photo/1.jpg",
   },
   {
     name: "用户2",
     userId: "uesr2",
-    photo: "http://oss.mcweb.club/img/chat/2.jpg",
+    photo: "./static/images/photo/2.jpg",
   },
   {
     name: "用户3",
     userId: "uesr3",
-    photo: "http://oss.mcweb.club/img/chat/3.jpg",
+    photo: "./static/images/photo/3.jpg",
   },
   {
     name: "用户4",
     userId: "uesr4",
-    photo: "http://oss.mcweb.club/img/chat/4.jpg",
+    photo: "./static/images/photo/4.jpg",
   },
   {
     name: "用户5",
     userId: "uesr5",
-    photo: "http://oss.mcweb.club/img/chat/5.jpg",
+    photo: "./static/images/photo/5.jpg",
   },
   {
     name: "用户6",
     userId: "uesr6",
-    photo: "http://oss.mcweb.club/img/chat/6.jpg",
+    photo: "./static/images/photo/6.jpg",
   },
   {
     name: "用户7",
     userId: "uesr7",
-    photo: "http://oss.mcweb.club/img/chat/7.jpg",
+    photo: "./static/images/photo/7.jpg",
   },
   {
     name: "用户8",
     userId: "uesr8",
-    photo: "http://oss.mcweb.club/img/chat/8.jpg",
+    photo: "./static/images/photo/8.jpg",
   },
 ]
 function getUserList() {

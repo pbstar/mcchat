@@ -11,6 +11,10 @@
             src="@/assets/mp3/你干嘛.mp3"
             preload="preload"
             muted="muted"
+            x5-video-player-fullscreen="true"
+            x5-playsinline
+            playsinline
+            webkit-playsinline
           ></audio>
         </div>
       </div>
