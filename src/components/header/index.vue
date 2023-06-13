@@ -10,11 +10,12 @@
             ref="myaudio"
             src="@/assets/mp3/你干嘛.mp3"
             preload="preload"
-            muted="muted"
-            x5-video-player-fullscreen="true"
-            x5-playsinline
-            playsinline
-            webkit-playsinline
+            :muted="false"
+            x5-video-player-type="h5-page"
+            x5-video-orientation="landscape|portrait"
+            webkit-playsinline="true"
+            playsinline="true"
+            currentTime="0.5"
           ></audio>
         </div>
       </div>

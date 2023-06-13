@@ -79,7 +79,7 @@ export default {
             // 群组通话
             TUICallKitServer.groupCall({
               userIDList: e.userIds,
-              groupID: "12345678",
+              groupID: "@TGS#25546IZMC",
               type: e.type,
             });
           } catch (error) {
